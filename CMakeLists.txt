@@ -66,18 +66,16 @@ FetchContent_MakeAvailable(googletest)
 
 list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/main.cpp")
 
-add_executable(common_tests
-    tests/CommonTests.cpp
+add_executable(unit_tests
+    tests/main.cpp
+    tests/EntitiesTests.cpp
     ${SOURCES}
 )
-
-target_include_directories(common_tests PRIVATE 
+target_include_directories(unit_tests PRIVATE 
     ${CMAKE_SOURCE_DIR}/src
     ${gtest_SOURCE_DIR}/include
 )
 
-target_link_libraries(common_tests PRIVATE 
+target_link_libraries(unit_tests
     gtest_main
 )
-
-add_test(NAME common_tests COMMAND common_tests)
