@@ -13,25 +13,33 @@ public:
         static Logger instance;
         return instance;
     }
-    
-    void log(const std::string& message) {
-        std::cout << "[LOG] " << message << std::endl;
+
+    void raw(const std::string& message) {
+        std::cout << message;
+    }
+
+    void log(const std::string& prefix, const std::string& level, const std::string& message) {
+        std::cout << prefix << "[" << level << "] " << message << "\033[0m" << std::endl;
+    }
+
+    void info(const std::string& message) {
+        log("\033[32m", "INFO", message);
     }
     
     void error(const std::string& message) {
-        std::cerr << "[ERROR] " << message << std::endl;
+        log("\033[31m", "ERROR", message);
     }
     
     void warning(const std::string& message) {
-        std::cout << "[WARNING] " << message << std::endl;
+        log("\033[33m", "WARNING", message);
     }
     
     void combatLog(const std::string& message) {
-        std::cout << "\033[31m[БІЙ] " << message << "\033[0m" << std::endl;
+        log("\033[31m", "БІЙ", message);
     }
     
     void gameLog(const std::string& message) {
-        std::cout << "\033[35m[ГРА] " << message << "\033[0m" << std::endl;
+        log("\033[35m", "ГРА", message);
     }
     
 private:

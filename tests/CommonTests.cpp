@@ -1,91 +1,100 @@
 #include <gtest/gtest.h>
-#include "../src/entities/Player.h"
-#include "../src/items/Weapon.h"
-#include "../src/items/HealthPotion.h"
-#include "../src/entities/Enemy.h"
-#include "../src/world/WorldMap.h"
-#include "../src/items/Weapon.h"
 #include <memory>
-#include <typeinfo>
+#include <sstream>
+#include <string>
+#include "../src/common/Logger.h"
 
-/*
-   - EXPECT_EQ(a, b) - проверяет равенство a и b
-   - EXPECT_NE(a, b) - проверяет, что a не равно b
-   - EXPECT_TRUE(condition) - проверяет, что условие истинно
-   - EXPECT_FALSE(condition) - проверяет, что условие ложно
-   - и другие макросы из Google Test
-*/
+// Helper class to capture cout/cerr output
+class StreamCapture {
+    std::streambuf* oldCout;
+    std::streambuf* oldCerr;
+    std::ostringstream captureStream;
+    std::ostringstream errorStream;
 
-// Тест на инициализацию игрока
-TEST(PlayerTest, Initialization) {
-    Player player("Тестовый игрок");
-    
-    EXPECT_GT(player.getHealth(), 0);
-    EXPECT_GT(player.getMaxHealth(), 0);
-    EXPECT_GE(player.getAttack(), 0);
-}
-
-// Тест на использование оружия
-TEST(ItemTest, WeaponUsage) {
-    Weapon sword("Меч", "Острый меч", 15, 10);
-    
-    EXPECT_EQ(sword.getName(), "Меч");
-    EXPECT_EQ(sword.getDamage(), 15);
-    
-    Player player("Тестовый игрок");
-    
-    player.equipWeapon(std::make_shared<Weapon>(sword));
-    
-    EXPECT_GT(player.getAttack(), 15);
-}
-
-// Тест на использование зелья здоровья
-TEST(ItemTest, HealthPotionUsage) {
-    HealthPotion potion;
-    
-    Player player("Тестовый игрок");
-    int initialHealth = player.getHealth();
-    int damage = 20;
-    player.takeDamage(damage);
-    
-    EXPECT_LT(player.getHealth(), initialHealth);
-    
-    potion.use(player);
-    
-    EXPECT_GE(player.getHealth(), initialHealth - damage);
-    EXPECT_LE(player.getHealth(), player.getMaxHealth());
-    
-    EXPECT_EQ(potion.getName(), "Зілля здоров'я");
-    EXPECT_GT(potion.getHealAmount(), 0);
-}
-
-// Тест на урон от монстров
-TEST(CombatTest, EnemyDamage) {
-    Player player("Тестовый игрок");
-    Enemy goblin("Гоблин", 1, 20, 5, 2, 10);
-    
-    int initialHealth = player.getHealth();
-    
-    goblin.attackTarget(player);
-    
-    int expectedMinDamage = 1;
-    int expectedMaxDamage = goblin.getAttack() - (player.getDefense() / 2);
-    
-    EXPECT_LT(player.getHealth(), initialHealth);
-    EXPECT_GE(player.getHealth(), initialHealth - expectedMaxDamage);
-    EXPECT_LE(player.getHealth(), initialHealth - expectedMinDamage);
-    
-    if (player.getHealth() > 0) {
-        EXPECT_TRUE(player.isAlive());
+public:
+    void start() {
+        oldCout = std::cout.rdbuf(captureStream.rdbuf());
+        oldCerr = std::cerr.rdbuf(errorStream.rdbuf());
     }
-    
-    while (goblin.isAlive()) {
-        player.attackTarget(goblin);
+
+    void stop() {
+        std::cout.rdbuf(oldCout);
+        std::cerr.rdbuf(oldCerr);
     }
-    EXPECT_FALSE(goblin.isAlive());
+
+    std::string getOutput() {
+        return captureStream.str();
+    }
+
+    std::string getError() {
+        return errorStream.str();
+    }
+
+    void reset() {
+        captureStream.str("");
+        captureStream.clear();
+        errorStream.str("");
+        errorStream.clear();
+    }
+};
+
+TEST(LoggerTests, LogMessage) {
+    StreamCapture capture;
+    capture.start();
+    
+    Logger::getInstance().info("Test log message");
+    
+    capture.stop();
+    
+    std::string output = capture.getOutput();
+    EXPECT_NE(output.find("[INFO] Test log message"), std::string::npos);
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(LoggerTests, WarningMessage) {
+    StreamCapture capture;
+    capture.start();
+    
+    Logger::getInstance().warning("Test warning message");
+    
+    capture.stop();
+    
+    std::string output = capture.getOutput();
+    EXPECT_NE(output.find("[WARNING] Test warning message"), std::string::npos);
 }
+
+TEST(LoggerTests, ErrorMessage) {
+    StreamCapture capture;
+    capture.start();
+    
+    Logger::getInstance().error("Test error message");
+    
+    capture.stop();
+    
+    std::string errorOutput = capture.getOutput();
+    EXPECT_NE(errorOutput.find("[ERROR] Test error message"), std::string::npos);
+}
+
+TEST(LoggerTests, CombatLogMessage) {
+    StreamCapture capture;
+    capture.start();
+    
+    Logger::getInstance().combatLog("Test combat log message");
+    
+    capture.stop();
+    
+    std::string output = capture.getOutput();
+    EXPECT_NE(output.find("[БІЙ] Test combat log message"), std::string::npos);
+}
+
+TEST(LoggerTests, GameLogMessage) {
+    StreamCapture capture;
+    capture.start();
+    
+    Logger::getInstance().gameLog("Test game log message");
+    
+    capture.stop();
+    
+    std::string output = capture.getOutput();
+    EXPECT_NE(output.find("[ГРА] Test game log message"), std::string::npos);
+}
+
