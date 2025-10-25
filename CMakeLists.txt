@@ -69,6 +69,7 @@ list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/main.cpp")
 add_executable(unit_tests
     tests/main.cpp
     tests/EntitiesTests.cpp
+    tests/ItemsTests.cpp
     tests/CommonTests.cpp
     ${SOURCES}
 )
