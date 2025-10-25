@@ -16,7 +16,31 @@ WorldMap::WorldMap() : root(nullptr), currentLocation(nullptr) {
 }
 
 WorldMap::~WorldMap() {
-    delete root;
+    if (root) {
+        std::vector<LocationNode*> nodes;
+        std::vector<LocationNode*> toProcess;
+        
+        toProcess.push_back(root);
+        while (!toProcess.empty()) {
+            LocationNode* current = toProcess.back();
+            toProcess.pop_back();
+            
+            if (current && std::find(nodes.begin(), nodes.end(), current) == nodes.end()) {
+                nodes.push_back(current);
+                if (current->getLeft()) toProcess.push_back(current->getLeft());
+                if (current->getRight()) toProcess.push_back(current->getRight());
+            }
+        }
+        
+        for (auto* node : nodes) {
+            node->setLeft(nullptr);
+            node->setRight(nullptr);
+        }
+        
+        for (auto* node : nodes) {
+            delete node;
+        }
+    }
 }
 
 LocationNode* WorldMap::getCurrentLocation() const {

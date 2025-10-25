@@ -6,8 +6,14 @@ LocationNode::LocationNode(const std::string& n, const std::string& desc)
     : name(n), description(desc), left(nullptr), right(nullptr) {}
     
 LocationNode::~LocationNode() {
-    delete left;
-    delete right;
+    if (left) {
+        delete left;
+        left = nullptr;
+    }
+    if (right) {
+        delete right;
+        right = nullptr;
+    }
 }
 
 void LocationNode::setLeft(LocationNode* node) { 
