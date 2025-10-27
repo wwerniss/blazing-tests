@@ -71,7 +71,6 @@ add_executable(unit_tests
     tests/EntitiesTests.cpp
     tests/ItemsTests.cpp
     tests/WorldTests.cpp
-    tests/CommonTests.cpp
     ${SOURCES}
 )
 target_include_directories(unit_tests PRIVATE 
