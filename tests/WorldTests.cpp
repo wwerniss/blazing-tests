@@ -52,14 +52,17 @@ TEST(WorldTests, TestLocationConnections) {
     EXPECT_NE(node1, node3);
 }
 
-// Test WorldMap memory management and cleanup
+// Test WorldMap memory management and cleanup with explicit destroyWorld function usage
 TEST(WorldTests, TestWorldCleanup) {
-    {
-        WorldMap worldMap;
-        // WorldMap and its nodes will be destroyed when going out of scope
-    }
-    // If we get here without memory leaks, the test passes
-    SUCCEED();
+    WorldMap worldMap;
+    LocationNode* root = worldMap.getCurrentLocation();
+    EXPECT_NE(root, nullptr);
+    worldMap.destructWorld();
+    LocationNode* destructedNode1 = worldMap.getCurrentLocation();
+    EXPECT_EQ(destructedNode1, nullptr);
+    worldMap.moveLeft();
+    LocationNode* destructedNode2 = worldMap.getCurrentLocation();
+    EXPECT_EQ(destructedNode2, nullptr);
 }
 
 // Test WorldMap edge case - navigation beyond bounds
