@@ -18,7 +18,6 @@ private:
     void showHelp();
     void showGameOver();
     void handleCombat();
-    void showInventory();
     
 public:
     Game();

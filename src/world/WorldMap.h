@@ -17,4 +17,5 @@ public:
     LocationNode* getCurrentLocation() const;
     void moveLeft();
     void moveRight();
+    void destructWorld();
 };
