@@ -13,7 +13,7 @@ var searchData=
   ['detailed_20component_20documentation_10',['Detailed Component Documentation',['../md_docs_2documentation__en.html#autotoc_md4',1,'']]],
   ['details_11',['Technical Implementation Details',['../md_docs_2documentation__en.html#autotoc_md20',1,'']]],
   ['development_12',['Development',['../md_README.html#autotoc_md66',1,'']]],
-  ['documentation_13',['documentation',['../md_docs_2documentation__en.html',1,'Blazing Darkness - Technical Documentation'],['../md_docs_2documentation__en.html#autotoc_md4',1,'Detailed Component Documentation']]],
+  ['documentation_13',['documentation',['../md_docs_2documentation__en.html',1,'Blazing Darkness - Technical Documentation'],['../md_docs_2documentation__en.html#autotoc_md4',1,'Detailed Component Documentation'],['../md_README.html#autotoc_md70',1,'Documentation']]],
   ['documentation_5fen_2emd_14',['documentation_en.md',['../documentation__en_8md.html',1,'']]],
   ['documentation_5fua_2emd_15',['documentation_ua.md',['../documentation__ua_8md.html',1,'']]],
   ['drawfooter_16',['drawFooter',['../classUtils.html#a94f5198a4cdfeb8a479cfe34a84b81b8',1,'Utils']]]

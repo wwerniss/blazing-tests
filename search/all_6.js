@@ -1,8 +1,8 @@
 var searchData=
 [
   ['gainexperience_0',['gainExperience',['../classPlayer.html#a246706f590839f0e0800b01258ee9646',1,'Player']]],
-  ['game_1',['game',['../md_docs_2documentation__ua.html#autotoc_md34',1,'Клас Game'],['../classGame.html',1,'Game'],['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../md_README.html#autotoc_md71',1,'In game']]],
-  ['game_20class_2',['game class',['../md_README.html#autotoc_md78',1,'Game Class'],['../md_docs_2documentation__en.html#autotoc_md5',1,'Game Class']]],
+  ['game_1',['game',['../md_docs_2documentation__ua.html#autotoc_md34',1,'Клас Game'],['../classGame.html',1,'Game'],['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../md_README.html#autotoc_md72',1,'In game']]],
+  ['game_20class_2',['game class',['../md_README.html#autotoc_md79',1,'Game Class'],['../md_docs_2documentation__en.html#autotoc_md5',1,'Game Class']]],
   ['game_20mechanics_3',['game mechanics',['../md_docs_2documentation__en.html#autotoc_md16',1,'Game Mechanics'],['../md_docs_2mechanics__en.html',1,'Game Mechanics']]],
   ['game_2ecpp_4',['Game.cpp',['../Game_8cpp.html',1,'']]],
   ['game_2eh_5',['Game.h',['../Game_8h.html',1,'']]],

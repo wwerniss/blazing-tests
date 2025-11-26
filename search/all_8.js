@@ -1,10 +1,10 @@
 var searchData=
 [
   ['implementation_20details_0',['Technical Implementation Details',['../md_docs_2documentation__en.html#autotoc_md20',1,'']]],
-  ['in_20battle_1',['In battle',['../md_README.html#autotoc_md72',1,'']]],
-  ['in_20game_2',['In game',['../md_README.html#autotoc_md71',1,'']]],
+  ['in_20battle_1',['In battle',['../md_README.html#autotoc_md73',1,'']]],
+  ['in_20game_2',['In game',['../md_README.html#autotoc_md72',1,'']]],
   ['info_3',['info',['../classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb',1,'Logger']]],
-  ['inheritance_20hierarchy_4',['Inheritance Hierarchy',['../md_README.html#autotoc_md85',1,'']]],
+  ['inheritance_20hierarchy_4',['Inheritance Hierarchy',['../md_README.html#autotoc_md86',1,'']]],
   ['interface_5',['Command Interface',['../md_docs_2mechanics__en.html#autotoc_md59',1,'']]],
   ['inventory_6',['inventory',['../classCharacter.html#a4b781b13dfc99a1e8758ca25d6144f30',1,'Character']]],
   ['inventory_20management_7',['Inventory Management',['../md_docs_2documentation__en.html#autotoc_md19',1,'']]],
